@@ -61,7 +61,7 @@ public class Product {
 	
 	//6. to string
 	public String toString() {
-		String result = id +": "+ title + ", "+ price + " eur,["
+		String result = id +": "+ title + ", "+ price + " eur,"
 				+"{" + category + "}";
 		return result;
 	}

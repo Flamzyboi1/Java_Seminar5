@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import lv.venta.model.Category;
+import lv.venta.model.Product;
+
 @Controller
 public class SimpleController {
 
@@ -22,5 +25,13 @@ public class SimpleController {
 		
 		model.addAttribute("box",myData);
 		return "data-page";//will show data-page.html file
+	}
+	@GetMapping("/product")//localhost:8080/product
+	public String getControllerProduct(Model model) {
+		System.out.println("The product controlleris running");
+		Product productData = new Product(2, "Apple", Category.fruits,0.99f,3,"Red");
+		model.addAttribute("box",productData);
+		return "product-page";//will show product page.html file
+		
 	}
 }
