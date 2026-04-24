@@ -1,29 +1,46 @@
 package lv.venta.model;
 
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
+
+@Entity
+@Table(name = "ProductTable")
 public class Product {
 	//1. variables
 	@NotNull
 	@NotEmpty
 	@Pattern(regexp = "[A-Z]{1}[a-z]{2,40}")
-	private String title;
+	@Column(name = "title")
 	
+	private String title;
+	@Column(name = "Category")
 	@NotNull
 	
 	private Category category;
 	
+	@Column(name = "Price")
+	
 	@Min(0)
 	@Max(100)
 	private float price;
-	
+
+	@Column(name = "Quantity")
 	@Min(0)
 	@Max(1000)
 	private int quantity;
+	
+	@Column(name = "description")
 	@NotNull
 	@NotEmpty
 	//TODO add @pattern if you want
@@ -31,6 +48,9 @@ public class Product {
 	
 	private String description;
 	
+	@Column(name = "Id")
+	@Id//this means that column values will be unique
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	//TODO  set id unique
 	private int id;
 	//2. getters & setters
