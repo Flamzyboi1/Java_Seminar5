@@ -96,22 +96,22 @@ public class Product {
 	}
 	//5. both args const
 	public Product() {}
-	public Product(int id, String title, Category category, float price, int quantity, String descreption) {
+	public Product(int id, String title, Category category, float price, int quantity, String description) {
 		setId(id);
 		setTitle(title);
 		setCategory(category);
 		setPrice(price);
-		setDescription(descreption);
+		setDescription(description);
 		setQuantity(quantity);
 		
 }
 	
-	public Product(String title, Category category, float price, int quantity, String descreption) {
+	public Product(String title, Category category, float price, int quantity, String description) {
 		
 		setTitle(title);
 		setCategory(category);
 		setPrice(price);
-		setDescription(descreption);
+		setDescription(description);
 		setQuantity(quantity);
 		
 }
