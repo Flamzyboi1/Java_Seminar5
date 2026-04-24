@@ -32,7 +32,7 @@ public class Product {
 	@Column(name = "Price")
 	
 	@Min(0)
-	@Max(100)
+	@Max(10000)
 	private float price;
 
 	@Column(name = "Quantity")
@@ -95,6 +95,16 @@ public class Product {
 	public Product() {}
 	public Product(int id, String title, Category category, float price, int quantity, String descreption) {
 		setId(id);
+		setTitle(title);
+		setCategory(category);
+		setPrice(price);
+		setDescription(descreption);
+		setQuantity(quantity);
+		
+}
+	
+	public Product(String title, Category category, float price, int quantity, String descreption) {
+		
 		setTitle(title);
 		setCategory(category);
 		setPrice(price);
