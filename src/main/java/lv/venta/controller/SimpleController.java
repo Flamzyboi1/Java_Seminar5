@@ -40,13 +40,13 @@ public class SimpleController {
 	public String getControllerAllProducts(Model model) {
 		System.out.println("The All-product controller is running");
 		Product productData1 = new Product(2, "Apple", Category.fruits,0.99f,3,"Red");
-		Product productData2 = new Product(8, "Mango", Category.fruits,0.99f,7,"Yellow");
-		Product productData3 = new Product(6, "lenovo", Category.computers,1200.99f,9,"Black");
+		Product productData2 = new Product(8, "Spoon", Category.utensils,19.59f,7,"Gold");
+		Product productData3 = new Product(6, "lenovo", Category.computers,1200.99f,2,"thinkpad");
 		ArrayList<Product>allProducts=
 				new ArrayList<Product>
 		(Arrays.asList(productData1,productData2,productData3));
 		model.addAttribute("box",allProducts);
-		return "all-product-page";//will show product page.html file
+		return "all-products-page";//will show product page.html file
 		
 }
 }
