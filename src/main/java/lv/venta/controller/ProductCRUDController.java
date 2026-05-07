@@ -57,4 +57,23 @@ public class ProductCRUDController {
 				
 			}
 	}
+	@GetMapping("/delete/{id}")//localhost;8080/product/crud/delete/2
+	public String getControllerForDeleteProductsById(@PathVariable(name = "id")int id, Model model) {
+		try{
+		prodService.deleteProductById(id);
+		
+		ArrayList<Product>productsFromDB = prodService.retriveAllProducts();
+		
+		model.addAttribute("box", productsFromDB);
+		return "all-products-page";
+		}
+		
+		catch(Exception e) {
+			model.addAttribute("box", e.getMessage());
+			return "error-page";
+			
+		}
+	}
+		
+
 }
