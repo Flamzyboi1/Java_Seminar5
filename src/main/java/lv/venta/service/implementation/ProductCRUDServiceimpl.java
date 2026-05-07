@@ -2,6 +2,7 @@ package lv.venta.service.implementation;
 
 import java.util.ArrayList;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,16 @@ public class ProductCRUDServiceimpl implements IProductCRUDService{
 	@Override
 	public void createProduct(String title, Category category, float price, int quantity, String description)
 			throws Exception {
-		// TODO Auto-generated method stub
-		
+		if (title == null || !title.isEmpty()
+				||!title.matches("[A-z{1}[a-z]{2,40}")|| category == null 
+				||price < 0 ||price > 100 ||quantity < 0 ||quantity > 1000 || description == null || description.isEmpty()){
+					throw new Exception("Some input data is incorrect");
+				}
+		if(prodRepo.existByTitleAndCategoryAndPriceAndQuantityAndDescription(title,category,price,quantity,description)) {
+			throw new Exception("This product already exists in the database");
+		}
+		Product prod = new Product(title, category, price, quantity, description);
+				prodRepo.save(prod);
 	}
 
 	@Override
@@ -35,20 +44,40 @@ public class ProductCRUDServiceimpl implements IProductCRUDService{
 
 	@Override
 	public Product retriveProductsById(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	if(prodRepo.count()== 0) {
+		throw new Exception("Id should be positive");
+	}
+	if (!prodRepo.existsById(id)) {
+		throw new Exception ("Product with id" +id + "doesnt exist");
+	}
+	return prodRepo.findById(id).get();
+		
 	}
 
 	@Override
 	public void updateProductById(int id, String title, Category category, float price, int quantity,
 			String description) throws Exception {
-		// TODO Auto-generated method stub
+		// 1. check input params
+		if (title == null || !title.isEmpty()
+				||!title.matches("[A-z{1}[a-z]{2,40}")|| category == null 
+				||price < 0 ||price > 100 ||quantity < 0 ||quantity > 1000 || description == null || description.isEmpty()){
+					throw new Exception("Some input data is incorrect");
+				}
+		//2.
+		Product productFromDB = retriveProductsById(id);
+		productFromDB.setTitle(title);
+		productFromDB.setCategory(category);
+		productFromDB.setPrice(price);
+		productFromDB.setQuantity(quantity);
+		productFromDB.setDescription(description);
 		
+		prodRepo.save(productFromDB);
 	}
 
 	@Override
 	public void deleteProductById(int id) throws Exception {
-		// TODO Auto-generated method stub
+	Product productFromDB = retriveProductsById(id);
+	prodRepo.delete(productFromDB);
 		
 	}
 
