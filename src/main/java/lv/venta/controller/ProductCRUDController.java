@@ -83,8 +83,48 @@ public class ProductCRUDController {
 		}
 		@PostMapping("/add")
 		public String postControllerForProductAdd(Product product, Model model){
-			System.out.println(product);
+			try {
+				System.out.println(product);
+			prodService.createProduct(product.getTitle(),product.getCategory(),product.getPrice(),product.getQuantity(),product.getDescription());
 			return"redirect:/product/crud/all";
+			}
+			catch(Exception e){
+				model.addAttribute("box", e.getMessage());
+				return "error-page";
+				
+				
+			}
+			
+		}
+		@GetMapping("/update/{id}")//localhost:8080/product/update/2
+		public String getControllerForProductUpdateById (@PathVariable(name = "id")int id, Model model) {
+			try{
+				
+				Product productsFromDB = prodService.retriveProductsById(id);
+				
+				model.addAttribute("product", productsFromDB);
+				return "update-product-page";
+				}
+				
+				catch(Exception e) {
+					model.addAttribute("box", e.getMessage());
+					return "error-page";
+					
+				}
+			
+		}
+		@PostMapping("/update/{id}")
+		public String postControllerForProductUpdateById(@PathVariable(name = "id")int id, Model model,Product product) {
+			try {
+			prodService.updateProductById(id,product.getTitle(),product.getCategory(),product.getPrice(),product.getQuantity(),product.getDescription());
+			return"redirect:/product/crud/all";
+			}
+			catch(Exception e){
+				model.addAttribute("box", e.getMessage());
+				return "error-page";
+				
+				
+			}
 			
 		}
 

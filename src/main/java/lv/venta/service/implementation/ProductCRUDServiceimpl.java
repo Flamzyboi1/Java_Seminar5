@@ -19,9 +19,9 @@ public class ProductCRUDServiceimpl implements IProductCRUDService{
 	@Override
 	public void createProduct(String title, Category category, float price, int quantity, String description)
 			throws Exception {
-		if (title == null || !title.isEmpty()
-				||!title.matches("[A-z{1}[a-z]{2,40}")|| category == null 
-				||price < 0 ||price > 100 ||quantity < 0 ||quantity > 1000 || description == null || description.isEmpty()){
+		if (title == null || title.isEmpty()
+				||!title.matches("[A-Z]{1}[a-z]{2,40}")|| category == null 
+				||price < 0 ||price > 100000 ||quantity < 0 ||quantity > 1000 || description == null || description.isEmpty()){
 					throw new Exception("Some input data is incorrect");
 				}
 		if(prodRepo.existsByTitleAndCategoryAndPriceAndQuantityAndDescription(title,category,price,quantity,description)) {
@@ -58,9 +58,9 @@ public class ProductCRUDServiceimpl implements IProductCRUDService{
 	public void updateProductById(int id, String title, Category category, float price, int quantity,
 			String description) throws Exception {
 		// 1. check input params
-		if (title == null || !title.isEmpty()
-				||!title.matches("[A-z{1}[a-z]{2,40}")|| category == null 
-				||price < 0 ||price > 100 ||quantity < 0 ||quantity > 1000 || description == null || description.isEmpty()){
+		if (title == null || title.isEmpty()
+				||!title.matches("[A-Z]{1}[a-z]{2,40}")|| category == null 
+				||price < 0 ||price > 100000 ||quantity < 0 ||quantity > 1000 || description == null || description.isEmpty()){
 					throw new Exception("Some input data is incorrect");
 				}
 		//2.
