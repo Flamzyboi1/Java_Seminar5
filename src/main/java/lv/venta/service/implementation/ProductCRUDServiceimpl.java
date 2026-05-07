@@ -73,7 +73,7 @@ public class ProductCRUDServiceimpl implements IProductCRUDService{
 		
 		prodRepo.save(productFromDB);
 	}
-
+//.
 	@Override
 	public void deleteProductById(int id) throws Exception {
 	Product productFromDB = retriveProductsById(id);
