@@ -7,8 +7,10 @@ import lv.venta.model.Product;
 
 public interface IProductRepo extends CrudRepository<Product,Integer> {
 
-	boolean existByTitleAndCategoryAndPriceAndQuantityAndDescription(String title, Category category, float price,
-			int quantity, String description);
+	
 	//Only Abstract functions will be there
+
+	boolean existsByTitleAndCategoryAndPriceAndQuantityAndDescription(String title, Category category, float price,
+			int quantity, String description);
 
 }

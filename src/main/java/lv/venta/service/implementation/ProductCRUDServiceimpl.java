@@ -24,7 +24,7 @@ public class ProductCRUDServiceimpl implements IProductCRUDService{
 				||price < 0 ||price > 100 ||quantity < 0 ||quantity > 1000 || description == null || description.isEmpty()){
 					throw new Exception("Some input data is incorrect");
 				}
-		if(prodRepo.existByTitleAndCategoryAndPriceAndQuantityAndDescription(title,category,price,quantity,description)) {
+		if(prodRepo.existsByTitleAndCategoryAndPriceAndQuantityAndDescription(title,category,price,quantity,description)) {
 			throw new Exception("This product already exists in the database");
 		}
 		Product prod = new Product(title, category, price, quantity, description);
