@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -74,6 +75,17 @@ public class ProductCRUDController {
 			
 		}
 	}
-		
+		@GetMapping("/add")//localhost:8080/product/crud/add
+		public String getControllerForProductAdd(Model model) {
+			model.addAttribute("product",new Product());//empty products
+			return "add-product-page";
+			
+		}
+		@PostMapping("/add")
+		public String postControllerForProductAdd(Product product, Model model){
+			System.out.println(product);
+			return"redirect:/product/crud/all";
+			
+		}
 
 }
