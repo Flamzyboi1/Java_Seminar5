@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lv.venta.model.Product;
@@ -27,6 +28,19 @@ public class ProductCRUDController {
 		catch(Exception e) {
 			model.addAttribute("box", e.getMessage());
 			return "error-page";
+		}
+	}
+	@GetMapping("/all/{id}")//localhost:8080/product/crud/all/2
+	public String getControllerToGetOneProductById(@PathVariable(name = "id")int id,Model model) {
+		try {
+		Product productsFromDB = prodService.retriveProductsById(id);
+		model.addAttribute("box", productsFromDB);
+		return "product-page";
+		}
+		catch(Exception e){
+			model.addAttribute("box", e.getMessage());
+			return "error-page";
+			
 		}
 	}
 }

@@ -48,7 +48,7 @@ public class ProductCRUDServiceimpl implements IProductCRUDService{
 		throw new Exception("Id should be positive");
 	}
 	if (!prodRepo.existsById(id)) {
-		throw new Exception ("Product with id" +id + "doesnt exist");
+		throw new Exception ("Product with id" + id + "doesnt exist");
 	}
 	return prodRepo.findById(id).get();
 		
