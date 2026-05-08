@@ -22,7 +22,7 @@ public class Product {
 	//1. variables
 	@NotNull
 	@NotEmpty
-	@Pattern(regexp = "[A-Z]{1}[a-z]{2,40}")
+	@Pattern(regexp = "[A-Z]{1}[a-z ]{2,40}", message = "Title should begin with capital and then small letter or spaces")
 	@Column(name = "title")
 	
 	private String title;

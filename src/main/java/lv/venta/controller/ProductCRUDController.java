@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import lv.venta.model.Product;
 import lv.venta.service.IProductCRUDService;
 
@@ -82,7 +84,12 @@ public class ProductCRUDController {
 			
 		}
 		@PostMapping("/add")
-		public String postControllerForProductAdd(Product product, Model model){
+		public String postControllerForProductAdd(@Valid Product product,BindingResult problems, Model model){
+			if(problems.hasErrors()) {
+				return"add-product-page";
+			}
+			else {
+			
 			try {
 				System.out.println(product);
 			prodService.createProduct(product.getTitle(),product.getCategory(),product.getPrice(),product.getQuantity(),product.getDescription());
@@ -93,6 +100,8 @@ public class ProductCRUDController {
 				return "error-page";
 				
 				
+			}
+			
 			}
 			
 		}
