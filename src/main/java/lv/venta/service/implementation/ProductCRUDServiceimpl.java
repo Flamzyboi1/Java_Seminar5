@@ -11,6 +11,7 @@ import lv.venta.model.Product;
 import lv.venta.repo.IProductRepo;
 import lv.venta.service.IProductCRUDService;
 
+
 @Service
 public class ProductCRUDServiceimpl implements IProductCRUDService{
 	@Autowired
@@ -80,5 +81,6 @@ public class ProductCRUDServiceimpl implements IProductCRUDService{
 	prodRepo.delete(productFromDB);
 		
 	}
+
 
 }

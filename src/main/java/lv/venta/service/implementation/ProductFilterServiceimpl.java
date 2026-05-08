@@ -3,7 +3,7 @@ package lv.venta.service.implementation;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.stereotype.Service;
 
 import lv.venta.model.Category;
@@ -22,7 +22,7 @@ public class ProductFilterServiceimpl implements IProductFilterService {
 		if(category == null) {
 			throw new Exception("Wrong input param");
 		}
-		ArrayList<Product> result = prodRepo.findbyCategory(category);
+		ArrayList<Product> result = prodRepo.findByCategory(category);
 		if(result.isEmpty()) {
 			throw new Exception("There are no products under category" + category);
 		}
@@ -48,7 +48,7 @@ public class ProductFilterServiceimpl implements IProductFilterService {
 		if(keyword == null || keyword.isEmpty()) {
 			throw new Exception("Keyword input is incorrect!");
 		}
-		ArrayList<Product> result = prodRepo.filterByTitleContainingOrDescriptionContaining(keyword,keyword);
+		ArrayList<Product> result = prodRepo.findByTitleContainingOrDescriptionContaining(keyword,keyword);
 		if(result.isEmpty()) {
 			throw new Exception("There are no products with title or description" + keyword);
 		}

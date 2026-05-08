@@ -16,14 +16,16 @@ public interface IProductRepo extends CrudRepository<Product,Integer> {
 	boolean existsByTitleAndCategoryAndPriceAndQuantityAndDescription(String title, Category category, float price,
 			int quantity, String description);
 
-	ArrayList<Product> findbyCategory(Category category);
+	ArrayList<Product> findByCategory(Category category);
 
 	ArrayList<Product> findByPriceLessThan(float priceLevel);
 
 
-	ArrayList<Product> filterByTitleContainingOrDescriptionContaining(String keyword, String keyword2);
+	
 	@Query(nativeQuery = true, value = "Select AVG(PRICE) FROM PRODUCT_TABLE;")
 	float myCalculateAvgPrice();
+
+	ArrayList<Product> findByTitleContainingOrDescriptionContaining(String keyword, String keyword2);
 
 
 	
